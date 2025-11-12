@@ -12,7 +12,7 @@ public class Employee {
 	private String name;
 	BusinessUnit bUnit;
 	private int yearsService;
-	private double salary;
+	private double baseSalary;
 	private String location;
 
 	// CONSTRUCTORS
@@ -85,7 +85,7 @@ public class Employee {
 	 * @return the salary
 	 */
 	public double getSalary() {
-		return salary;
+		return baseSalary;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class Employee {
 	 */
 	public void setSalary(double salary) throws IllegalArgumentException {
 		if (salary > 0) {
-			this.salary = salary;
+			this.baseSalary = salary;
 		} else {
 			throw new IllegalArgumentException("Error, salary must be at least £1");
 		}
@@ -118,6 +118,12 @@ public class Employee {
 	}
 
 	public void displayRecord() {
+		System.out.println("Employee Name:\t");
+		System.out.println("Business Unit:\t");
+		System.out.println("Years of Service:\t");
+		System.out.println("Base Salary:\t");
+		System.out.println("Employee Name:\t");
+		System.out.println("Location:\t");
 
 	}
 
