@@ -6,7 +6,7 @@ package healthcareEmployeeManagement;
 /**
  * Class that enables the production of specific employee types
  */
-public class Employee {
+public abstract class Employee {
 
 	// INSTANCE VARIABLES
 	private String name;
@@ -127,12 +127,8 @@ public class Employee {
 
 	}
 
-	public void receiveSalary() {
+	public abstract void calculateSalary(double hours);
 
-	}
-
-	public void calcBenefits() {
-
-	}
+	
 
 }
