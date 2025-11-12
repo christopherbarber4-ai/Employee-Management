@@ -27,7 +27,7 @@ public class OperationalWorker extends Employee {
 	 * @param location
 	 * @throws IllegalArgumentException
 	 */
-	public OperationalWorker(String name, BusinessUnit bUnit, int yearsService, double salary, String location,
+	public OperationalWorker(String name, BusinessUnit bUnit, int yearsService, double salary, Location location,
 			Department department, int directReports) throws IllegalArgumentException {
 		super(name, bUnit, yearsService, salary, location);
 		this.department = department;
@@ -78,8 +78,16 @@ public class OperationalWorker extends Employee {
 	 * method that calculates total salary based on base salary and including any
 	 * specific benefits
 	 */
-	public void calculateSalary(double hours) {
-		// TODO Auto-generated method stub
+	public double calculateSalary() {
+		double serviceBonus = 0;
+		if (this.getYearsService() == 1) {
+			serviceBonus = 0;
+		} else if (this.getYearsService() == 2) {
+			serviceBonus = 1.05;
+		} else {
+			serviceBonus = 1.10;
+		}
+		return (WEEKLY_HOURS * this.getSalary() * serviceBonus);
 
 	}
 

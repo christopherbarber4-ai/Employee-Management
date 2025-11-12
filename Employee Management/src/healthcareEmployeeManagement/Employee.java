@@ -13,7 +13,12 @@ public abstract class Employee {
 	BusinessUnit bUnit;
 	private int yearsService;
 	private double baseSalary;
-	private String location;
+	Location location;
+
+	static final double SALARY_MIN = 0;
+	static final double WEEKLY_HOURS = 37.5;
+	static final double OVERTIME_RATE = 1.10;
+	static final double SESSIONAL_BONUS_RATE = 1.20;
 
 	// CONSTRUCTORS
 
@@ -21,9 +26,9 @@ public abstract class Employee {
 
 	}
 
-	public Employee(String name, BusinessUnit bUnit, int yearsService, double salary, String location)
+	public Employee(String name, BusinessUnit bUnit, int yearsService, double salary, Location location)
 			throws IllegalArgumentException {
-		this.name = name;
+		this.setName(name);
 		this.bUnit = bUnit;
 		this.yearsService = yearsService;
 		this.setSalary(salary);
@@ -34,6 +39,7 @@ public abstract class Employee {
 
 	/**
 	 * gets the name
+	 * 
 	 * @return the name
 	 */
 	public String getName() {
@@ -42,14 +48,21 @@ public abstract class Employee {
 
 	/**
 	 * sets the name
+	 * 
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		if (name.isEmpty()) {
+			throw new IllegalArgumentException("Error, name must be at least 1 character long");
+		} else {
+			this.name = name;
+
+		}
 	}
 
 	/**
 	 * gets the Business unit
+	 * 
 	 * @return the bUnit
 	 */
 	public BusinessUnit getbUnit() {
@@ -58,6 +71,7 @@ public abstract class Employee {
 
 	/**
 	 * sets the Business unit
+	 * 
 	 * @param bUnit the bUnit to set
 	 */
 	public void setbUnit(BusinessUnit bUnit) {
@@ -66,6 +80,7 @@ public abstract class Employee {
 
 	/**
 	 * gets the years of service
+	 * 
 	 * @return the yearsService
 	 */
 	public int getYearsService() {
@@ -74,14 +89,21 @@ public abstract class Employee {
 
 	/**
 	 * sets the years of service
+	 * 
 	 * @param yearsService the yearsService to set
+	 * @throws IllegalArgumentException
 	 */
-	public void setYearsService(int yearsService) {
-		this.yearsService = yearsService;
+	public void setYearsService(int yearsService) throws IllegalArgumentException {
+		if (yearsService >= 0) {
+			this.yearsService = yearsService;
+		} else {
+			throw new IllegalArgumentException("Error, years of service, canot be a negative number");
+		}
 	}
 
 	/**
 	 * gets the salary
+	 * 
 	 * @return the salary
 	 */
 	public double getSalary() {
@@ -90,11 +112,12 @@ public abstract class Employee {
 
 	/**
 	 * sets the salary
+	 * 
 	 * @param salary the salary to set
 	 * @throws IllegalArgumentException if the salary entered is not at least £1
 	 */
 	public void setSalary(double salary) throws IllegalArgumentException {
-		if (salary > 0) {
+		if (salary > SALARY_MIN) {
 			this.baseSalary = salary;
 		} else {
 			throw new IllegalArgumentException("Error, salary must be at least £1");
@@ -103,32 +126,33 @@ public abstract class Employee {
 
 	/**
 	 * gets the location
+	 * 
 	 * @return the location
 	 */
-	public String getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
 	/**
 	 * sets the location
+	 * 
 	 * @param location the location to set
 	 */
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
 	public void displayRecord() {
-		System.out.println("Employee Name:\t");
-		System.out.println("Business Unit:\t");
-		System.out.println("Years of Service:\t");
-		System.out.println("Base Salary:\t");
-		System.out.println("Employee Name:\t");
-		System.out.println("Location:\t");
+		System.out.println("Employee Name\t\t:" + this.getName());
+		System.out.println("Business Unit\t\t:" + this.getbUnit());
+		System.out.println("Years of Service\t:" + this.getYearsService());
+		System.out.printf("Base Hourly Rate\t:£%.2f\n", this.getSalary());
+		System.out.println("Location\t\t:" + this.getLocation());
+		System.out.printf("Total Weekly Salary\t:£%.2f\n", calculateSalary());
+		System.out.println();
 
 	}
 
-	public abstract void calculateSalary(double hours);
-
-	
+	public abstract double calculateSalary();
 
 }
