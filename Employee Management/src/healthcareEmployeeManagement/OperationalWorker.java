@@ -28,8 +28,8 @@ public class OperationalWorker extends Employee {
 	 * @throws IllegalArgumentException
 	 */
 	public OperationalWorker(String name, BusinessUnit bUnit, int yearsService, double salary, Location location,
-			Department department, int directReports) throws IllegalArgumentException {
-		super(name, bUnit, yearsService, salary, location);
+			Department department, int directReports, int employeeID) throws IllegalArgumentException {
+		super(name, bUnit, yearsService, salary, location, employeeID);
 		this.department = department;
 		this.directReports = directReports;
 		// TODO Auto-generated constructor stub
@@ -89,6 +89,13 @@ public class OperationalWorker extends Employee {
 		}
 		return (WEEKLY_HOURS * this.getSalary() * serviceBonus);
 
+	}
+	
+	@Override
+	public String toString() {
+	    return "ClinicalWorker: " + getName() + ", " + getbUnit() + ", " + getYearsService() + 
+	            " years, £" + getSalary() + ", " + getLocation() + ", " + 
+	            ", Sessional: " + " hours";
 	}
 
 }

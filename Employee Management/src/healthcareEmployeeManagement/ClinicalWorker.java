@@ -28,8 +28,8 @@ public class ClinicalWorker extends Employee {
 	 * @throws IllegalArgumentException
 	 */
 	public ClinicalWorker(String name, BusinessUnit bUnit, int yearsService, double salary, Location location,
-			Specialism specialism, boolean isSessional, int overTime) throws IllegalArgumentException {
-		super(name, bUnit, yearsService, salary, location);
+			Specialism specialism, boolean isSessional, int overTime, int employeeID) throws IllegalArgumentException {
+		super(name, bUnit, yearsService, salary, location, employeeID);
 		this.specialism = specialism;
 		this.isSessional = isSessional;
 		this.overTime = overTime;
@@ -127,6 +127,13 @@ public class ClinicalWorker extends Employee {
 	 */
 	public void displayRecord() {
 		super.displayRecord();
+	}
+	
+	@Override
+	public String toString() {
+	    return "ClinicalWorker: " + getName() + ", " + getbUnit() + ", " + getYearsService() + 
+	            " years, £" + getSalary() + ", " + getLocation() + ", " + specialism + 
+	            ", Sessional: " + isSessional + ", Overtime: " + overTime + " hours";
 	}
 
 }
