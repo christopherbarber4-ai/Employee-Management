@@ -105,7 +105,7 @@ public class EmployeeManager {
 			System.out.println("--------------------------PAYROLL COMPLETE----------------------------");
 			System.out.println("Press y to return to main menu");
 			String choice = scanner.next();
-			break;
+			inWeeklySalaryMenu = false;
 		}
 	}
 
@@ -170,7 +170,7 @@ public class EmployeeManager {
 				break;
 			case 5:
 				inReportMenu = false;
-				break;
+			
 			}
 		}
 	}
